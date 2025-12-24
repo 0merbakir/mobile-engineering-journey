@@ -1,1 +1,167 @@
-package com.example.roadmaps\n\nobject Day1Exercises {\n\n    // Data class for the exercises\n    data class User(val name: String, val id: Int)\n\n    /**\n     * This function covers the basics of the Kotlin language.\n     */\n    fun languageBasics() {\n        println(\"--- Language Basics Exercises ---\")\n\n        // 1. val vs var\n        println(\"\\n* val vs var *\")\n        val immutableVar = \"I can't be changed.\"\n        var mutableVar = \"I can be reassigned.\"\n        mutableVar = \"See?\"\n        println(immutableVar)\n        println(\"Mutable var: $mutableVar\")\n\n        // 2. Null Safety\n        println(\"\\n* Null Safety *\")\n        var nullableString: String? = \"I might be null.\"\n        //nullableString = null // uncomment to see the effects\n\n        println(\"Length (safe call): \${nullableString?.length}\") // Safe call: returns null if nullableString is null\n\n        nullableString?.let { // Executes only if not null\n            println(\"let block: '$it' is not null\")\n        }\n\n        val lengthOrDefault = nullableString?.length ?: 0 // Elvis operator\n        println(\"Length or default: $lengthOrDefault\")\n\n        // Use !! only when you are 100% sure the value is not null.\n        // println(\"Unsafe call: \${nullableString!!.length}\") // Throws NullPointerException if null\n\n        // 3. Functions\n        println(\"\\n* Functions *\")\n        fun greet(name: String): String {\n            return \"Hello, $name!\"\n        }\n        println(greet(\"Mobile Engineer\"))\n\n        // 4. when / if\n        println(\"\\n* when / if *\")\n        val number = 2\n        val numberAsText = when (number) {\n            1 -> \"One\"\n            2 -> \"Two\"\n            else -> \"Other\"\n        }\n        println(\"The number $number is '$numberAsText'\")\n\n        val description = if (number > 1) \"plural\" else \"singular\"\n        println(\"The number is $description\")\n\n        // 5. Data Classes\n        println(\"\\n* Data Classes *\")\n        val user1 = User(\"Alex\", 1)\n        val user2 = User(\"Alex\", 1)\n        println(\"User: $user1\") // toString() is automatically generated\n        println(\"Users are equal: \${user1 == user2}\") // equals() is automatically generated\n\n        // 6. Collections (List, Map)\n        println(\"\\n* Collections *\")\n        val fruits = listOf(\"Apple\", \"Banana\", \"Cherry\")\n        println(\"Fruits: $fruits\")\n        println(\"First fruit: \${fruits.first()}\")\n\n        val userMap = mapOf(\n            1 to User(\"Zeynep\", 101),\n            2 to User(\"Mehmet\", 102)\n        )\n        println(\"User map: $userMap\")\n        println(\"User with key 2: \${userMap[2]}\")\n    }\n\n    /**\n     * Original function to sum even numbers.\n     */\n    fun sumOfEvens(numbers: List<Int>): Int {\n        return numbers.filter { it % 2 == 0 }.sum()\n    }\n\n    /**\n     * Main entry point to run all exercises.\n     */\n    fun runExercises() {\n        // Run today's focus exercises\n        languageBasics()\n\n        // Run previous exercises\n        println(\"\\n--- Previous Exercises ---\")\n        val numbers = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)\n        val evenSum = sumOfEvens(numbers)\n        println(\"Sum of even numbers: $evenSum\")\n    }\n}\n
+package com.example.roadmaps
+
+/**
+ * ======================================================================================
+ * KOTLIN FUNDAMENTALS FOR INTERVIEWS
+ * ======================================================================================
+ *
+ * This file contains explanations and examples of core Kotlin concepts that are
+ * frequently asked about in technical interviews.
+ */
+
+//--------------------------------------------------------------------------------------
+// 1. OBJECTS & SINGLETONS
+//--------------------------------------------------------------------------------------
+/**
+ * `object` is a keyword used to declare a singleton class. A singleton ensures that only
+ * one instance of a class is ever created.
+ *
+ * Interview Focus:
+ * - Why use a singleton? For objects that are expensive to create or that manage a shared
+ *   state, like a database connection, a network client, or a utility class with no state.
+ * - How it works: The object is created lazily when it's first accessed. It's thread-safe.
+ * - Example: `Day1Exercises` is a singleton. We can call its methods directly without
+ *   creating an instance, like `Day1Exercises.runExercises()`.
+ */
+object Day1Exercises {
+
+    //----------------------------------------------------------------------------------
+    // 2. DATA CLASSES
+    //----------------------------------------------------------------------------------
+    /**
+     * `data class` is a concise way to create classes that are primarily used to hold data. (concise : kısa, öz)
+     *
+     * Interview Focus:
+     * - What the compiler generates automatically: `equals()`, `hashCode()`, `toString()`,
+     *   `copy()`, and `componentN()` functions (for destructuring declarations).
+     * - Key benefit: It eliminates a huge amount of boilerplate code, making the code
+     *   cleaner and less error-prone. It promotes immutability if you use `val`. (promote = teşvik etmek, immutability = değiştirilmezlik)
+     * - Primary constructor rule: Must have at least one parameter. All primary constructor
+     *   parameters must be marked as `val` or `var`.  (boilerplate = tekrarlayan)
+     */
+    data class User(val name: String, val id: Int)
+
+    /**
+     * This function covers the basics of the Kotlin language.
+     */
+    fun languageBasics() {
+        println("--- Language Basics Exercises ---")
+
+        //------------------------------------------------------------------------------
+        // 3. VARIABLES: val vs var
+        //------------------------------------------------------------------------------
+        /**
+         * `val` (immutable reference): You can assign a value to it once. It's like `final` in Java.
+         * `var` (mutable reference): You can reassign the value later on.
+         *
+         * Interview Focus:
+         * - Best Practice: Always prefer `val` over `var`. This promotes immutability, which makes
+         *   your code safer, more predictable, and easier to reason about, especially in
+         *   multi-threaded environments.
+         */
+        println("\n* val vs var *")
+        val immutableVar = "I can't be changed."
+        var mutableVar = "I can be reassigned."
+        mutableVar = "See?"
+        println(immutableVar)
+        println("Mutable var: $mutableVar")
+
+        //------------------------------------------------------------------------------
+        // 4. NULL SAFETY
+        //------------------------------------------------------------------------------
+        /**
+         * Kotlin's type system is designed to eliminate the `NullPointerException`.
+         *
+         * Interview Focus:
+         * - `?` (Nullable type): Declares that a variable can hold a `null` value. `String?`
+         * - `?.` (Safe Call): The most common way to handle nulls. Executes the call only if the
+         *   variable is not null; otherwise, it returns `null`.
+         * - `?:` (Elvis Operator): Takes a default value to use if the expression on the left is null.
+         * - `!!` (Non-null Assertion): The "hammer". Converts any value to a non-null type and
+         *   throws a `NullPointerException` if the value is null. Use it sparingly, only when you
+         *   are 100% certain the value is not null.
+         * - `let` Scope Function: `nullableString?.let { ... }` is a common, elegant idiom for
+         *   executing a block of code only if a value is not null.
+         */
+        println("\n* Null Safety *")
+        var nullableString: String? = "I might be null."
+        //nullableString = null // uncomment to see the effects
+
+        println("Length (safe call): ${nullableString?.length}") // Returns null if nullableString is null
+
+        nullableString?.let { // Executes only if not null
+            println("let block: '$it' is not null")
+        }
+
+        val lengthOrDefault = nullableString?.length ?: 0 // Elvis operator
+        println("Length or default: $lengthOrDefault")
+
+        //------------------------------------------------------------------------------
+        // 5. FUNCTIONS & CONTROL FLOW (when/if)
+        //------------------------------------------------------------------------------
+        /**
+         * Functions are first-class citizens in Kotlin. `if` and `when` can be used not just
+         * as statements, but as expressions that return a value.
+         *
+         * Interview Focus:
+         * - Expression-based control flow: Using `if` and `when` to directly assign a value to a
+         *   variable is more concise and readable than the traditional statement-based approach.
+         * - `when`: A more powerful and readable replacement for the traditional `switch` statement.
+         *   It can be used with a wide range of types and conditions.
+         */
+        println("\n* Functions & Control Flow *")
+        fun greet(name: String): String = "Hello, $name!" // Single-expression function
+        println(greet("Mobile Engineer"))
+
+        val number = 2
+        val numberAsText = when (number) {
+            1 -> "One"
+            2 -> "Two"
+            else -> "Other"
+        }
+        println("The number $number is '$numberAsText'")
+
+        //------------------------------------------------------------------------------
+        // 6. COLLECTIONS (List, Map)
+        //------------------------------------------------------------------------------
+        /**
+         * Kotlin provides a rich API for collections, with a key distinction between mutable
+         * and immutable collections.
+         *
+         * Interview Focus:
+         * - Immutable vs. Mutable: `listOf()` and `mapOf()` create read-only collections. To add or
+         *   remove elements, you must use `mutableListOf()` or `mutableMapOf()`.
+         * - Functional API: Highlight the powerful extension functions available like `filter`,
+         *   `map`, `forEach`, `first`, `sum`, etc. These allow for a declarative, functional style
+         *   of programming that is often more concise and readable than imperative loops.
+         */
+        println("\n* Collections *")
+        val fruits = listOf("Apple", "Banana", "Cherry") // Immutable list
+        println("Fruits: $fruits")
+        println("First fruit: ${fruits.first()}")
+
+        val userMap = mapOf(1 to User("Zeynep", 101), 2 to User("Mehmet", 102))
+        println("User map: $userMap")
+    }
+
+    /**
+     * A function using the collection API to demonstrate functional style.
+     */
+    fun sumOfEvens(numbers: List<Int>): Int {
+        return numbers.filter { it % 2 == 0 }.sum()
+    }
+
+    /**
+     * Main entry point to run all exercises.
+     */
+    fun runExercises() {
+        // Run today's focus exercises
+        languageBasics()
+
+        // Run previous exercises
+        println("\n--- Previous Exercises ---")
+        val numbers = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        val evenSum = sumOfEvens(numbers)
+        println("Sum of even numbers: $evenSum")
+    }
+}
