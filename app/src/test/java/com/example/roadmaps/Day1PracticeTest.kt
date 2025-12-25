@@ -2,21 +2,24 @@ package com.example.roadmaps
 
 import org.junit.Test
 
-/**
- * Bu dosya, öğrendiğiniz Kotlin temellerini kendi başınıza pratik yapmanız için hazırlanmıştır.
- * Aşağıdaki `myPractice()` fonksiyonunun içine kendi kodunuzu yazabilirsiniz.
- *
- * Yazdığınız kodu çalıştırmak için bu fonksiyonun yanındaki yeşil oynatma (▶) simgesine tıklayın.
- */
+
 class Day1PracticeTest {
 
     @Test
     fun myPractice() {
-        // Kendi Kotlin kodunuzu buraya yazın.
-        // Örneğin:
-        // val myName = "Adınız"
-        // println("Merhaba, $myName!")
+        println("\n* Functions & Control Flow *")
+        fun greet(name: String): String = "Hello, $name!" // Single-expression function
+        println(greet("Mobile Engineer"))
 
+        fun adder1(num1 : Int, num2 : Int) : Int{
+            return num1 + num2
+        }
+        println(adder1(1,2))
+
+        fun adder2(num1 : Int, num2 : Int) : Int = num1 + num2
+        println(adder2(1,2))
+
+        }
 
     }
-}
+

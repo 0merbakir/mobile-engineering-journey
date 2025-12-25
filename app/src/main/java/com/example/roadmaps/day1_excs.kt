@@ -77,8 +77,8 @@ object Day1Exercises {
          * - `?.` (Safe Call): The most common way to handle nulls. Executes the call only if the
          *   variable is not null; otherwise, it returns `null`.
          * - `?:` (Elvis Operator): Takes a default value to use if the expression on the left is null.
-         * - `!!` (Non-null Assertion): The "hammer". Converts any value to a non-null type and
-         *   throws a `NullPointerException` if the value is null. Use it sparingly, only when you
+         * - `!!` (Non-null Assertion): The "hammer". Converts any value to a non-null type and (assertion = doğrulama)
+         *   throws a `NullPointerException` if the value is null. Use it sparingly, only when you (sparingly = ihtiyatlı)
          *   are 100% certain the value is not null.
          * - `let` Scope Function: `nullableString?.let { ... }` is a common, elegant idiom for
          *   executing a block of code only if a value is not null.
