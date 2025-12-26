@@ -1,6 +1,7 @@
 package com.example.roadmaps.day2
 
 import org.junit.Test
+import java.util.UUID
 
 /**
  * This is your personal practice area for Day 2.
@@ -8,14 +9,23 @@ import org.junit.Test
  *
  * To run your code, click the green play button (▶) next to the `myPractice` function.
  */
+
+abstract class User(val id: String) {
+    abstract val name: String
+    fun getProfileInfo(): String {
+        return "User Profile - Name: $name, ID: $id"
+}
+    class RegisteredUser(override val name: String, val email: String) : User(UUID.randomUUID().toString())
+
+
 class Day2PracticeTest {
 
     @Test
     fun myPractice() {
-        // Practice OOP concepts here.
-        // For example, create your own class that inherits from User, or your own interface.
+
         println("Day 2 Practice Area!")
 
 
     }
+}
 }

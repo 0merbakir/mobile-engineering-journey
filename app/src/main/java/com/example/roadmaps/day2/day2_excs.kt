@@ -42,7 +42,7 @@ class RegisteredUser(override val name: String, val email: String) : User(UUID.r
 // 2. INTERFACE
 //--------------------------------------------------------------------------------------
 /**
- * An `interface` defines a contract that other classes must adhere to. It can contain
+ * An `interface` defines a contract that other classes must adhere(sadık olmak) to. It can contain
  * abstract method declarations and also methods with default implementations.
  *
  * Interview Focus:
@@ -58,7 +58,7 @@ interface Authenticator {
 // 3. SEALED CLASS
 //--------------------------------------------------------------------------------------
 /**
- * `sealed class` is one of Kotlin's most powerful features. It restricts the class
+ * `sealed class` is one of Kotlin's most powerful features. It restricts(sınırlamak) the class
  * hierarchy, meaning all direct subclasses must be declared in the same file. This is
  * extremely useful for representing a fixed set of states or outcomes.
  *
@@ -71,7 +71,7 @@ interface Authenticator {
  */
 sealed class AuthResult {
     data class Success(val user: RegisteredUser) : AuthResult()
-    data class Failure(val reason: String) : AuthResult()
+    data class Failure(val reason: String)  : AuthResult()
     object InProgress : AuthResult() // Represents a state, so it can be an object
 }
 
@@ -80,7 +80,7 @@ sealed class AuthResult {
 //--------------------------------------------------------------------------------------
 /**
  * Extension functions allow you to add new functions to a class without modifying its
- * source code. This is incredibly useful for enhancing existing libraries or SDKs.
+ * source code. This is incredibly useful for enhancing(geliştirmek) existing libraries or SDKs.
  *
  * Interview Focus:
  * - How it works: The compiler statically resolves these calls. It's just syntactic sugar
