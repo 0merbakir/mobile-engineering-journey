@@ -125,7 +125,7 @@ object Day1Exercises {
         // 6. COLLECTIONS (List, Map)
         //------------------------------------------------------------------------------
         /**
-         * Kotlin provides a rich API for collections, with a key distinction between mutable
+         * Kotlin provides a rich API for collections, with a key distinction( ayrım, fark) between mutable
          * and immutable collections.
          *
          * Interview Focus:
