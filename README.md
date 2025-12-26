@@ -6,9 +6,9 @@ This repository documents my journey through a 14-day intensive roadmap to becom
 
 ## File Walkthrough
 
-*   `app/src/main/java/com/example/roadmaps/dayX_excs.kt`: Contains the primary code and interview-focused explanations for each day'''s topics.
-*   `app/src/test/java/com/example/roadmaps/DayXExercisesTest.kt`: A test runner file. Use the play button (▶) here to execute the code in the corresponding `dayX_excs.kt` file.
-*   `app/src/test/java/com/example/roadmaps/DayXPracticeTest.kt`: Your personal scratchpad. A blank test file created each day for you to practice the concepts yourself.
+*   `app/src/main/java/com/example/roadmaps/dayX/dayX_excs.kt`: Contains the primary code and interview-focused explanations for each day'''s topics.
+*   `app/src/test/java/com/example/roadmaps/dayX/DayXExercisesTest.kt`: A test runner file. Use the play button (▶) here to execute the code in the corresponding `dayX_excs.kt` file.
+*   `app/src/test/java/com/example/roadmaps/dayX/DayXPracticeTest.kt`: Your personal scratchpad. A blank test file created each day for you to practice the concepts yourself.
 
 ---
 
