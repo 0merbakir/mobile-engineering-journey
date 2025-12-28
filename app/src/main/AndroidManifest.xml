@@ -11,17 +11,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Roadmaps">
+
+        <!-- Default MainActivity, no longer the starting activity -->
         <activity
             android:name=".MainActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Roadmaps">
+            android:theme="@style/Theme.Roadmaps" />
+
+        <!-- Day 3: FirstActivity, set as the starting activity -->
+        <activity
+            android:name=".day3.FirstActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Day 3: SecondActivity -->
+        <activity android:name=".day3.SecondActivity" />
+
     </application>
 
 </manifest>
