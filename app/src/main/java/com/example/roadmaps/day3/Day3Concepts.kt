@@ -81,7 +81,10 @@ import com.example.roadmaps.databinding.ActivitySecondBinding
 class FirstActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFirstBinding
-    private val TAG = "FirstActivityLifecycle"
+
+    companion object {
+        private const val TAG = "FirstActivityLifecycle"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
