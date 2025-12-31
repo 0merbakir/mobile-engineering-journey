@@ -19,9 +19,13 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.Roadmaps" />
 
-        <!-- Day 3: FirstActivity, set as the starting activity -->
+        <!-- Day 3 Activities -->
+        <activity android:name=".day3.FirstActivity" />
+        <activity android:name=".day3.SecondActivity" />
+
+        <!-- Day 4: ListActivity, set as the new starting activity -->
         <activity
-            android:name=".day3.FirstActivity"
+            android:name=".day4.ListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,8 +33,10 @@
             </intent-filter>
         </activity>
 
-        <!-- Day 3: SecondActivity -->
-        <activity android:name=".day3.SecondActivity" />
+        <!-- Day 4: DetailActivity -->
+        <activity
+            android:name=".day4.DetailActivity"
+            android:parentActivityName=".day4.ListActivity" />
 
     </application>
 
